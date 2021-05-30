@@ -1,0 +1,27 @@
+$(document).ready(function() {
+  $("html,body").animate({scrollTop: 0}, 100); //100ms for example
+});
+
+window.onload = function() {
+ setTimeout (function () {
+  scrollTo(0,0);
+ }, 100); //100ms for example
+}
+
+
+$(window).on('beforeunload', function() {
+    $(window).scrollTop(0); 
+});
+
+$(window).load(function(){
+    setTimeout(function() {
+        $('html, body').scrollTop(0);
+    }, 10);
+});
+
+
+$(window).load(function() {
+    setTimeout(function() {
+        if ($(document).scrollTop() !== 0) $("html, body").animate({ scrollTop: 0 }, 'fast');
+}, 300);
+});

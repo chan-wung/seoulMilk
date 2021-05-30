@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>서울우유협동조합</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <script src="script/jquery-3.3.1.min.js"></script>
+    <!-- <script src="script/sticker.js"></script>
+    <script src="script/sticker.min.js"></script> -->
+    <script src="script/js.js"></script>
+    <script type="text/javascript">
+    $(function(){
+
+    $('.btn').click(function(){
+        $(this).find("div").addClass("on");
+        $(this).siblings().find("div").removeClass("on");
+        $(this).find("span").addClass("a");
+        $(this).siblings().find("span").removeClass("a");
+    });
+
+    function fnMove(seq){
+        var offset = $(".div" + seq).offset();
+        $('html, body').animate({scrollTop : offset.top}, 400);
+        console.log("aa");
+    }
+    $(function(){
+      $('.m1').click(function(){
+        fnMove('1');
+      });
+      $('.m2').click(function(){
+        fnMove('2');
+      });
+      $('.m3').click(function(){
+        fnMove('3');
+      });
+      $('.m4').click(function(){
+        fnMove('4');
+      });
+    });
+  });
+  //   $('.m1').click(function(){
+  //     fnMove('1');
+  //   });
+  //   $('.m2').click(function(){
+  //     fnMove('2');
+  //   });
+  //   $('.m3').click(function(){
+  //     fnMove('3');
+  //   });
+  //   $('.m4').click(function(){
+  //     fnMove('4');
+  //   });
+  // function fnMove(seq){
+  //     var offset = $(".box").offset();
+  //     console.log(offset);
+  //     $('.box').animate({scrollTop : offset.top}, 400);
+  // }
+    </script>
+    <style media="screen">
+      .front{
+        position: absolute;
+        z-index: 3;
+        transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        transition: 1s transform;
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+      }
+      .back{
+        position: absolute;
+        z-index: 1;
+        transform: rotateY(-180deg);
+        -moz-transform: rotateY(-180deg);
+        transition: 1s transform;
+        transform-style: preserve-3d;
+        backface-visibility: hidden;
+      }
+      .event_flip:hover .front{
+        transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+      }
+      .event_flip:hover .back{
+        transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+      }
+      /* 카드 */
+
+      /* @keyframes drift {
+        from { transform: rotate(0deg); }
+        from { transform: rotate(360deg); }
+      }
+      .wave_box {
+        width: 1920px;
+        height: 1000px;
+        border-radius: 5px;
+        box-shadow: 0 2px 30px rgba(black, .2);
+        background: lighten(#f0f4c3, 10%);
+        position: relative;
+        position: absolute;
+        top:0;
+        left:0;
+        overflow: hidden;
+        transform: translate3d(0, 0, 0);
+      }
+
+      .wave {
+        position: absolute;
+        top: 3%;
+        left: 50%;
+        background:rgba(66,159,135, 1);
+        width: 3000px;
+        height: 3000px;
+        margin-left: -1500px;
+        margin-top: -2150px;
+        transform-origin: 47% 48%;
+        border-radius: 43%;
+        animation: drift 12000ms infinite linear;
+      }
+
+      .wave.-three {
+        animation: drift 14000ms infinite linear;
+        background: #44a086;
+        opacity: .7;
+      }
+
+      .wave.-two {
+        animation: drift 16000ms infinite linear;
+        background:rgba(66,159,135, 1);
+      }
+      .wave.-four {
+        animation: drift 11000ms infinite linear;
+        background: #44a086;
+        opacity: .4;
+      }
+
+      .wave.-five {
+        animation: drift 13000ms infinite linear;
+        opacity: .1;
+        background: #59d894;
+      } */
+
+      .wave_box:after {
+        content: '';
+        display: block;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(#e8a, 1), rgba(#def, 0) 80%, rgba(white, .5));
+        z-index: 11;
+        transform: translate3d(0, 0, 0);
+      }
+      .milkwave{
+        width:100%;
+        height:100%;
+        position: absolute;
+        top:0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+      }
+      div.milkwave > .milkwave1{
+        width: 135%;
+        height: 12%;
+        position: absolute;
+        bottom: 0;
+        animation: milkwave_1 8s infinite linear;
+        animation-delay: 0s;
+        background-image: url(images/wave.png);
+      }
+      div.milkwave > .milkwave2{
+        width: 135%;
+        height: 12%;
+        position: absolute;
+        bottom: 10px;
+        opacity: .5;
+        animation: milkwave_2 3s infinite linear;
+        animation-delay: -5s;
+        background-image: url(images/wave2.png);
+      }
+      div.milkwave > .milkwave3{
+        width: 135%;
+        height: 12%;
+        position: absolute;
+        bottom: 15px;
+        opacity: .2;
+        animation: milkwave_1 8s infinite linear;
+        animation-delay: -2s;
+        background-image: url(images/wave.png);
+      }
+      div.milkwave > .milkwave4{
+        width: 135%;
+        height: 12%;
+        position: absolute;
+        bottom: 20px;
+        opacity: .7;
+        animation: milkwave_2 3s infinite linear;
+        animation-delay: -5s;
+        background-image: url(images/wave2.png);
+      }
+
+      @keyframes milkwave_1 {
+        0%{
+          /* transform: translateX(0px); */
+          background-position-x:0;
+        }
+        100%{
+          /* transform: translateX(100%); */
+          background-position-x:100%;
+        }
+      }
+      @keyframes milkwave_2 {
+        0%{
+          /* transform: translateX(0px); */
+          background-position-x:0;
+        }
+        100%{
+          /* transform: translateX(100%); */
+          background-position-x:-100%;
+        }
+      }
+      /* 우유 출렁이는 효과 */
+
+      .Clickrbtn3 a{
+      display: inline-block;
+      position:absolute;
+      top:200px;
+      left:1350px;
+      -webkit-transform:translate(-50%,-50%);
+      transform:translate(-50%,-50%);
+      color:#fff;
+      letter-spacing: .1em;
+      text-decoration: none;
+      transition: opacity .3s;
+      display:none;
+      }
+      .Clickrbtn3 a:hover{
+      opacity: .5;
+      }
+      #Clickright3 a span{
+      position: absolute;
+      top:0;
+      left:0;
+      width:24px;
+      height:24px;
+      margin-left: -12px;
+      -webkit-animation:sdb07 2s infinite;
+      animation:Clicksdb07 2s infinite;
+      opacity: 0;
+      box-sizing: border-box;
+      }
+      #Clickright3 a span:nth-of-type(1){
+      left: 12px;
+      border-bottom: 1px solid #fff;
+      -webkit-animation-delay: 0s;
+      animation-delay: 0s;
+      top:10px;
+      }
+      #Clickright3 a span:nth-of-type(2) {
+      border-bottom: 1px solid #fff;
+      left: 36px;
+      -webkit-animation-delay: .15s;
+      animation-delay: .15s;
+      top:10px;
+      }
+      #Clickright3 a span:nth-of-type(3) {
+      -webkit-transform: rotate(225deg);
+      transform: rotate(225deg);
+      border-left: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      left: 56px;
+      top:21px;
+      -webkit-animation-delay: .3s;
+      animation-delay: .3s;
+      }
+      .Clickrbtn4 a{
+      display: inline-block;
+      position:absolute;
+      top:600px;
+      left:1150px;
+      -webkit-transform:translate(-50%,-50%);
+      transform:translate(-50%,-50%);
+      color:#fff;
+      letter-spacing: .1em;
+      text-decoration: none;
+      transition: opacity .3s;
+      display:none;
+      }
+      .Clickrbtn4 a:hover{
+      opacity: .5;
+      }
+      #Clickright4 a span{
+      position: absolute;
+      top:0;
+      left:0;
+      width:24px;
+      height:24px;
+      margin-left: -12px;
+      -webkit-animation:sdb07 2s infinite;
+      animation:Clicksdb07 2s infinite;
+      opacity: 0;
+      box-sizing: border-box;
+      }
+      #Clickright4 a span:nth-of-type(1){
+      left: 12px;
+      border-bottom: 1px solid #fff;
+      -webkit-animation-delay: 0s;
+      animation-delay: 0s;
+      top:10px;
+      }
+      #Clickright4 a span:nth-of-type(2) {
+      border-bottom: 1px solid #fff;
+      left: 36px;
+      -webkit-animation-delay: .15s;
+      animation-delay: .15s;
+      top:10px;
+      }
+      #Clickright4 a span:nth-of-type(3) {
+      -webkit-transform: rotate(225deg);
+      transform: rotate(225deg);
+      border-left: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      left: 56px;
+      top:21px;
+      -webkit-animation-delay: .3s;
+      animation-delay: .3s;
+      }
+      @-webkit-keyframes Clicksdb07 {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+      }
+      @keyframes Clicksdb07 {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    .Leftlbtn1 a{
+    display: inline-block;
+    position:absolute;
+    top:200px;
+    left:650px;
+    -webkit-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%);
+    color:#fff;
+    letter-spacing: .1em;
+    text-decoration: none;
+    transition: opacity .3s;
+    display: none;
+    }
+    .Leftlbtn1 a:hover{
+    opacity: .5;
+    }
+    #Leftleft1 a span{
+    position: absolute;
+    top:0;
+    left:0;
+    width:24px;
+    height:24px;
+    margin-left: -12px;
+    -webkit-animation:sdb07 2s infinite;
+    animation:Leftsdb07 2s infinite;
+    opacity: 0;
+    box-sizing: border-box;
+    }
+    #Leftleft1 a span:nth-of-type(1){
+      border-bottom: 1px solid #fff;
+      left: 36px;
+      -webkit-animation-delay: .0s;
+      animation-delay: .0s;
+      top:10px;
+          }
+    #Leftleft1 a span:nth-of-type(2) {
+      left: 12px;
+      border-bottom: 1px solid #fff;
+      -webkit-animation-delay: .15s;
+      animation-delay: .15s;
+      top:10px;
+
+    }
+    #Leftleft1 a span:nth-of-type(3) {
+
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      border-left: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      left: -10px;
+      top:21px;
+      -webkit-animation-delay: .3s;
+      animation-delay: .3s;
+    }
+
+    .Leftlbtn2 a{
+    display: inline-block;
+    position:absolute;
+    top:400px;
+    left:450px;
+    -webkit-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%);
+    color:#fff;
+    letter-spacing: .1em;
+    text-decoration: none;
+    transition: opacity .3s;
+    display: none;
+    }
+    .Leftlbtn2 a:hover{
+    opacity: .5;
+    }
+    #Leftleft2 a span{
+    position: absolute;
+    top:0;
+    left:0;
+    width:24px;
+    height:24px;
+    margin-left: -12px;
+    -webkit-animation:sdb07 2s infinite;
+    animation:Leftsdb07 2s infinite;
+    opacity: 0;
+    box-sizing: border-box;
+    }
+    #Leftleft2 a span:nth-of-type(1){
+      border-bottom: 1px solid #fff;
+      left: 36px;
+      -webkit-animation-delay: .0s;
+      animation-delay: .0s;
+      top:10px;
+          }
+    #Leftleft2 a span:nth-of-type(2) {
+      left: 12px;
+      border-bottom: 1px solid #fff;
+      -webkit-animation-delay: .15s;
+      animation-delay: .15s;
+      top:10px;
+
+    }
+    #Leftleft2 a span:nth-of-type(3) {
+
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      border-left: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      left: -10px;
+      top:21px;
+      -webkit-animation-delay: .3s;
+      animation-delay: .3s;
+    }
+
+    .Leftlbtn5 a{
+    display: inline-block;
+    position:absolute;
+    top:700px;
+    left:750px;
+    -webkit-transform:translate(-50%,-50%);
+    transform:translate(-50%,-50%);
+    color:#fff;
+    letter-spacing: .1em;
+    text-decoration: none;
+    transition: opacity .3s;
+    display: none;
+    }
+    .Leftlbtn5 a:hover{
+    opacity: .5;
+    }
+    #Leftleft5 a span{
+    position: absolute;
+    top:0;
+    left:0;
+    width:24px;
+    height:24px;
+    margin-left: -12px;
+    -webkit-animation:sdb07 2s infinite;
+    animation:Leftsdb07 2s infinite;
+    opacity: 0;
+    box-sizing: border-box;
+    }
+    #Leftleft5 a span:nth-of-type(1){
+      border-bottom: 1px solid #fff;
+      left: 36px;
+      -webkit-animation-delay: .0s;
+      animation-delay: .0s;
+      top:10px;
+          }
+    #Leftleft5 a span:nth-of-type(2) {
+      left: 12px;
+      border-bottom: 1px solid #fff;
+      -webkit-animation-delay: .15s;
+      animation-delay: .15s;
+      top:10px;
+
+    }
+    #Leftleft5 a span:nth-of-type(3) {
+
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+      border-left: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+      left: -10px;
+      top:21px;
+      -webkit-animation-delay: .3s;
+      animation-delay: .3s;
+    }
+    @-webkit-keyframes Leftsdb07 {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+    }
+    @keyframes Leftsdb07 {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  .pageBtn{
+    position: fixed;
+    top: 400px;
+    left: 91%;
+    text-align: right;
+    /* background: red; */
+    width: 200px;
+    height: 120px;
+    box-sizing: border-box;
+    z-index: 999;
+  }
+  .pageBtn li{
+    padding-right: 80px;
+    height: 30px;
+    position: relative;
+  }
+  .pageBtn li{
+    color: #e1e1e1;
+    /* background: red; */
+  }
+  .pageBtn li > div{
+    width: 8px;
+    height: 8px;
+    border: 1px solid #fff;
+    border-radius: 100px;
+  }
+  .pageBtn li > div.on{
+    background: rgba(4, 119, 64,1);
+  }
+  .pageChange1{
+    position: absolute;
+    top:7px;
+    left: 128px;
+
+  }
+  .pageChange2{
+    position: absolute;
+    top:7px;
+    left: 128px;
+  }
+  .pageChange3{
+    position: absolute;
+    top:7px;
+    left: 128px;
+  }
+  .pageChange4{
+    position: absolute;
+    top:7px;
+    left: 128px;
+  }
+  .line{
+    width:20px;
+    height:20px;
+    /* background:aquamarine; */
+    position:relative;
+    /* float: left; */
+    position: absolute;
+    top:11px;
+    left: 125px;
+  }
+  .line > span{
+    /* position: absolute;
+    top: -13px;
+    left: 125px; */
+    width:100%;
+    height:100%;
+    display:block;
+    box-sizing: border-box;
+    /* transform: rotate(270deg); */
+  }
+  .line > span.a:before{
+    content:'';
+    position:absolute;
+    width:100%;
+    height:2px;
+    background: rgba(4, 119, 64,1);
+    animation: linemove 4s linear infinite;
+  }
+  @keyframes linemove {
+    0%{
+      transform-origin:left;
+      transform: scaleX(0);
+    }
+    50%{
+      transform-origin:left;
+      transform: scaleX(1);
+    }
+    50.1%{
+      transform-origin:right;
+      transform: scaleX(1);
+    }
+    100%{
+      transform-origin:right;
+      transform: scaleX(0);
+    }
+  }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <div class="box target div1" id="1">
+
+          <ul class="pageBtn">
+            <a href="#1" class="m1 btn"><li>메인
+              <div class="pageChange1 on"></div>
+              <section class="line">
+                <span class="a"></span>
+              </section>
+          </li></a>
+            <a href="#2" class="m2 btn"><li>나100샵
+              <div class="pageChange2"></div>
+              <section class="line">
+                <span></span>
+              </section>
+          </li></a>
+            <a href="#3" class="m3 btn"><li>공지사항
+              <div class="pageChange3"></div>
+              <section class="line">
+                <span></span>
+              </section>
+          </li></a>
+            <a href="#4" class="m4 btn"><li>가정배달서비스
+              <div class="pageChange4"></div>
+              <section class="line">
+                <span></span>
+              </section>
+          </li></a>
+          </ul>
+
+        <header>
+          <div class="sub_back"></div>
+        <div class="container">
+            <h1><a href="#"><img src="images/logo_w1.png" alt="흰색로고"> </a> </h1>
+            <ul class="nav">
+              <li><a href="#">서울우유소개</a><ul class="submenu">
+                <li><a href="#">기업이념</a></li>
+                <li><a href="#">연혁</a></li>
+                <li><a href="#">윤리경영</a></li>
+                <li><a href="#">투자정보</a></li>
+                <li><a href="#">오시는길</a></li>
+              </ul></li>
+              <li><a href="#">제품소개</a><ul class="submenu">
+                <li><a href="#">우유</a></li>
+                <li><a href="#">유음료</a></li>
+                <li><a href="#">치즈</a></li>
+                <li><a href="#">가공식품</a></li>
+                <li><a href="#">반려동물제품</a></li>
+              </ul></li>
+              <li><a href="#">우유이야기</a><ul class="submenu">
+                <li><a href="#">우유관련정보</a></li>
+                <li><a href="서울우유 서브페이지/index.html">치즈이야기</a></li>
+                <li><a href="#">원산지</a></li>
+              </ul></li>
+              <li><a href="#">홍보센터</a><ul class="submenu">
+                <li><a href="#">공지사항</a></li>
+                <li><a href="#">자료실</a></li>
+                <li><a href="#">품질인증</a></li>
+                <li><a href="#">이벤트</a></li>
+              </ul></li>
+              <li><a href="#">고객서비스</a><ul class="submenu">
+                <li><a href="#">자주하는질문</a></li>
+                <li><a href="#">고객문의</a></li>
+                <li><a href="#">입찰정보</a></li>
+                <li><a href="#">가정배달주문</a></li>
+              </ul></li>
+              <li><a href="#">인재채용</a><ul class="submenu">
+                <li><a href="#">인재상</a></li>
+                <li><a href="#">복지후생</a></li>
+                <li><a href="#">채용정보</a></li>
+              </ul></li>
+            </ul>
+        </div>
+        </header>
+        <div class="video">
+          <video autoplay muted loop>
+            <source src="milk2.mp4" type="video/mp4">
+          </video>
+          <div class="mouse">
+          <img src="images/mouse.png" alt="scroll_img : 마우스이미지">
+          <p>Scroll</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="box target div2" id="2">
+        <!-- <div class="wave_box">
+          <div class='wave -one'></div>
+          <div class='wave -two'></div>
+          <div class='wave -three'></div>
+          <div class='wave -four'></div>
+          <div class='wave -five'></div>
+          <div class='wave2 -one'></div>
+          <div class='wave2 -two'></div>
+          <div class='wave2 -three'></div>
+          <div class='wave3 -one'></div>
+          <div class='wave3 -two'></div>
+          <div class='wave3 -three'></div>
+        </div> -->
+        <p class="my100shop"></p>
+                <img src="images/100shop4.jpg" alt="100shop 이미지" >
+        <div class="milkwave">
+          <div class="milkwave1"></div>
+          <div class="milkwave2"></div>
+          <div class="milkwave3"></div>
+          <div class="milkwave4"></div>
+        </div>
+        <div class="popup_layer"></div>
+
+        <div class="popup1">
+          <img src="images/arrow06.png" alt="arrow 이미지">
+          <a href="#">
+            <span class="p01"><p class="bold">아침에 쥬스 유기농 포도 주스 900ml</p>
+             <p class="bold2">4,280원</p></span> </a>
+          <img src="images/close.png" alt="닫기" class="close">
+        </div>
+
+        <div class="popup2"><a href="#"><span class="p02"><p class="bold">서울 듀오안 150ml*4입</p> <p class="bold2">4,890원</p></span></a><img src="images/arrow00.png" alt="arrow 이미지">
+        <img src="images/close.png" alt="닫기" class="close"></div>
+
+        <div class="popup3"><a href="#"><span class="p03"><p class="bold">앙팡 베이비 우유 250ml*3입</p> <p class="bold2">2,550원</p></span></a><img src="images/arrow01.png" alt="arrow 이미지">
+        <img src="images/close.png" alt="닫기" class="close"></div>
+
+        <div class="popup4"><a href="#"><span class="p04"><p class="bold">비요뜨 쿠키앤크림*3입</p> <p class="bold2">2,550원</p></span></a><img src="images/arrow07.png" alt="arrow 이미지">
+        <img src="images/close.png" alt="닫기" class="close"></div>
+
+        <div class="popup5"><a href="#"><span class="p05"><p class="bold">서울우유 초코반,딸기반 250ml*3입</p> <p class="bold2">2,390원</p></span></a><img src="images/arrow02.png" alt="arrow 이미지">
+        <img src="images/close.png" alt="닫기" class="close"></div>
+
+
+        <p class="popup_one"><img src="images/100shopimg1_1.png" alt="유기농포도주스"></p>
+        <div id="Leftleft1" class="Leftlbtn1">
+                <a href="#">Click<span></span><span></span><span></span></a>
+              </div>
+        <p class="popup_two"><img src="images/100shopimg2.png" alt="듀오락"></p>
+        <div id="Leftleft2" class="Leftlbtn2">
+                <a href="#">Click<span></span><span></span><span></span></a>
+              </div>
+        <p class="popup_three"><img src="images/100shopimg3.png" alt="앙팡"></p>
+        <div id="Clickright3" class="Clickrbtn3">
+          <a href="#">Click<span></span><span></span><span></span></a>
+        </div>
+        <p class="popup_four"><img src="images/100shopimg4.png" alt="비요뜨"></p>
+        <div id="Clickright4" class="Clickrbtn4">
+          <a href="#">Click<span></span><span></span><span></span></a>
+        </div>
+        <p class="popup_five"><img src="images/100shopimg5_1.png" alt="퓨전 우유"></p>
+        <div id="Leftleft5" class="Leftlbtn5">
+                <a href="#">Click<span></span><span></span><span></span></a>
+              </div>
+        <p class="more"></p>
+        <section class="man">
+          <img src="images/man.png" alt="김승현 아버지">
+        </section>
+
+
+      </div>
+
+      <div class="box target div3" id="3">
+        <img src="images/cow.png" alt="소그림" class="cow1">
+        <img src="images/cheeze.png" alt="치즈그림" class="cheeze1">
+        <img src="images/cheeze.png" alt="치즈그림" class="cheeze2">
+        <img src="images/cheeze.png" alt="치즈그림" class="cheeze3">
+        <img src="images/cheeze.png" alt="치즈그림" class="cheeze4">
+        <img src="images/cow2.png" alt="소그림" class="cow2">
+        <img src="images/cow2.png" alt="소그림" class="cow3">
+        <!-- <img src="images/11.jpg" alt=""> -->
+        <div id="left" class="lbtn">
+                <a href="#!"><span></span><span></span><span></span></a>
+              </div>
+              <div id="right" class="rbtn">
+                <a href="#!"><span></span><span></span><span></span></a>
+              </div>
+        <div class="container">
+          <div id="slide">
+
+            <div class="slidelist">
+              <div class="slideimg">
+                <h1 class="c">공지사항</h1>
+                <p class="d">서울우유의 새로운 공지사항을 입니다.</p>
+                <div class="news">
+                  <div class="news1">
+                    <a href="#!"><img src="images/notice1.jpg" alt="서울우유 공식블로그 뉴스레터"> </a>
+                  </div>
+                  <div class="news2">
+                    <div class="news3">
+                      <a href="#!"><img src="images/notice2.jpg" alt="감사이벤트"> </a>
+                    </div>
+                    <div class="news4">
+                      <div class="news4-1">
+                        <a href="#!"><img src="images/notice4.jpg" alt="연말,여토 연이은 숙취에는 헛개 초코 밀크!"> </a>
+                      </div>
+                      <div class="news4-2">
+                        <a href="#!"><img src="images/notice3.jpg" alt="다이어리 한개로 끝내는 신년 계획 팁!"> </a>
+                      </div>
+                      <div class="news4-3">
+                        <a href="#!"><img src="images/notice5.jpg" alt="2019년 수고했어. 2020년도 열심히!"> </a>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="slideimg">
+                <h1 class="c">이벤트</h1>
+                <p class="d">서울우유의 새로운 이벤트를 확인해 보세요!</p>
+                <!-- <div class="event">
+                  <ul>
+                    <li>
+                  <a href="#!"><img src="images/event4.jpg" alt="event"></a>
+                    </li>
+                    <li>
+                  <a href="#!"><img src="images/event.jpg" alt="event"></a>
+                    </li>
+                    <li>
+                  <a href="#!"><img src="images/event2.jpg" alt="event"></a>
+                    </li>
+                  </ul>
+              </div> -->
+              <div class="event_list">
+                <div class="event">
+                  <a href="#!">
+                    <div class="event_flip">
+                      <div class="front">
+                        <img src="images/event4.jpg" alt="복면우유">
+                      </div>
+                      <div class="back">
+						<!-- <p class="back_cate">mobile</p>
+						<p class="back_line"></p>
+						<p class="back_title">The Contest App</p>
+						<p class="back_more">view detail +</p>
+					 -->
+           <img src="images/event5.jpg" alt="나100샵">
+					</div>
+
+                    </div>
+                  </a>
+                </div>
+                <div class="event">
+                  <a href="#!">
+                    <div class="event_flip">
+                      <div class="front">
+                        <img src="images/event.jpg" alt="디카페인 스폐셜티 카페 콜드브루 4자토크">
+                      </div>
+                      <div class="back">
+            <!-- <p class="back_cate">mobile</p>
+            <p class="back_line"></p>
+            <p class="back_title">The Contest App</p>
+            <p class="back_more">view detail +</p> -->
+            <img src="images/event5.jpg" alt="나100샵">
+          </div>
+
+                    </div>
+                  </a>
+                </div>
+                <div class="event">
+                  <a href="#!">
+                    <div class="event_flip">
+                      <div class="front">
+                        <img src="images/event2.jpg" alt="듀오 사과맛 출시기념">
+                      </div>
+                      <div class="back">
+            <!-- <p class="back_cate">mobile</p>
+            <p class="back_line"></p>
+            <p class="back_title">The Contest App</p>
+            <p class="back_more">view detail +</p> -->
+            <img src="images/event5.jpg" alt="나100샵">
+
+          </div>
+
+                    </div>
+                  </a>
+                </div>
+              </div>
+              </div>
+              <div class="slideimg">
+                <h1 class="c">서울우유 소식</h1>
+                <p class="d">서울우유의 새로운 소식을 공유합니다.</p>
+
+                <div class="milk">
+                  <ul>
+                    <li>
+                  <a href="https://www.facebook.com/SeoulMilk"><img src="images/milk_facebook2.png" alt="facebook"></a>
+                    </li>
+                    <li>
+                  <a href="https://story.kakao.com/ch/seoulmilk"><img src="images/milk_kakao2.png" alt="kakaotalk"></a>
+                    </li>
+                    <li>
+                  <a href="https://www.instagram.com/seoulmilk_official/"> <img src="images/milk_instargram4.png" alt="instargram"></a>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+
+      <div class="box target div4" id="4">
+        <div class="service">
+          <!-- <div class="del"> -->
+            <h1 class="c">가정배달서비스</h1>
+            <p class="d">체세포수 1등급·세균수 1A 나100%를 배달해드립니다!</p>
+            <!-- <input type="text" placeholder="제품명ㆍ특징ㆍ키워드를 입력해주세요"> -->
+          <!-- </div> -->
+          <div class="map_box">
+            <div class="map">
+              <!-- <table cellpadding="0" cellspacing="0" width="855" height="720" class="ms"> <tr> <td style="border:1px solid #cecece;"><a href="https://v4.map.naver.com/?__pinOnly=false&query=&searchCoord=&menu=location&tab=1&lng=3e2ab4944f64f628556ea0e9f80a0391&__fromRestorer=true&mapMode=0&mpx=79d9f6c1ea3bcf1c979e5b76409a6729a2b0734ecd8934700d6547ca5ec8d1698babd69df8b6ceb7288e86aa3f7075f4&pinId=18916245&pinType=site&lat=7b4ebdbd5d3888d1383f9843f4799a15&dlevel=11&enc=b64" target="_blank"><img src="http://prt.map.naver.com/mashupmap/print?key=p1577935827864_1213687075" width="460" height="340" alt="지도 크게 보기" title="지도 크게 보기" border="0" style="vertical-align:top;"/></a></td> </tr> <tr> <td> <table cellpadding="0" cellspacing="0" width="100%"> <tr> <td height="30" bgcolor="#f9f9f9" align="left" style="padding-left:9px; border-left:1px solid #cecece; border-bottom:1px solid #cecece;"> <span style="font-family: tahoma; font-size: 11px; color:#666;">2020.1.2</span>&nbsp;<span style="font-size: 11px; color:#e5e5e5;">|</span>&nbsp;<a style="font-family: dotum,sans-serif; font-size: 11px; color:#666; text-decoration: none; letter-spacing: -1px;" href="https://v4.map.naver.com/?__pinOnly=false&query=&searchCoord=&menu=location&tab=1&lng=3e2ab4944f64f628556ea0e9f80a0391&__fromRestorer=true&mapMode=0&mpx=79d9f6c1ea3bcf1c979e5b76409a6729a2b0734ecd8934700d6547ca5ec8d1698babd69df8b6ceb7288e86aa3f7075f4&pinId=18916245&pinType=site&lat=7b4ebdbd5d3888d1383f9843f4799a15&dlevel=11&enc=b64" target="_blank">지도 크게 보기</a> </td> <td width="98" bgcolor="#f9f9f9" align="right" style="text-align:right; padding-right:9px; border-right:1px solid #cecece; border-bottom:1px solid #cecece;"> <span style="float:right;"><span style="font-size:9px; font-family:Verdana, sans-serif; color:#444;">&copy;&nbsp;</span>&nbsp;<a style="font-family:tahoma; font-size:9px; font-weight:bold; color:#2db400; text-decoration:none;" href="https://www.navercorp.com" target="_blank">NAVER Corp.</a></span> </td> </tr> </table> </td> </tr> </table> -->
+              <img src="images/mapF2.JPG" alt="서울우유 낙동사업본부" class="table">
+            </div>
+            <div class="map_1">
+              <img src="images/ssd_map.png" alt="신사동">
+            </div>
+            <div class="map_2">
+              <img src="images/kpd_map.png" alt="개포동">
+            </div>
+            <div class="map_3">
+              <img src="images/sam_map.png" alt="삼성동">
+            </div>
+            <div class="map_search">
+              <div class="menu">
+                <ul class="tap_menu">
+                  <li><a href=".search1">매장검색</a> </li>
+                  <li><a href=".search2">지역검색</a> </li>
+                </ul>
+              </div>
+              <div class="block">
+                <div class="search1">
+                  <input type="text" placeholder="검색 할 매장을 입력하세요." class="input1">
+                  <a href="#!"><img src="images/srchBt.png" alt="검색버튼" class="sbtn1"></a>
+                  <div class="inputbox1">
+                    <br>
+                    <p></p>
+                  </div>
+                </div>
+                <div class="search2">
+                  <!-- <input type="text" placeholder="검색 할 지역을 입력하세요." class="input2">
+                  <a href="#!"><img src="images/srchBt.png" alt="검색버튼" class="sbtn2"></a> -->
+                  <select id="city">
+                    <option>시,도</option>
+                    <option>서울특별시</option>
+                    <option>부산광역시</option>
+                    <option>대구광역시</option>
+                    <option>인천광역시</option>
+                    <option>광주광역시</option>
+                    <option>대전광역시</option>
+                    <option>울산광역시</option>
+                    <option>강원도</option>
+                    <option>경기도</option>
+                    <option>경상남도</option>
+                    <option>경상북도</option>
+                    <option>전라남도</option>
+                    <option>전라북도</option>
+                    <option>제주특별자치도</option>
+                    <option>충청남도</option>
+                    <option>충청북도</option>
+                    <option>세종특별자치시</option>
+                  </select>
+                  <select id="city2">
+                    <option>구,군</option>
+                  </select>
+                  <div class="inputbox2">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+        <a href="#"><img src="images/service2.jpg" alt="가정 배달 서비스"></a>
+        <footer>
+        <div class="container">
+            <h1><a href="#"><img src="images/flogo2.png" alt="푸터로고"></a></h1>
+            <address>
+              이용약관 | 개인정보처리방침 | 이메일 무단수집거부 | 고객센터 | Contact Us | 공정거래 자율준수 프로그램 | 신용정보활용 체제 <br> <br> 전자우편 : seoulmilk@seoulmilk.co.kr(발신전용) | 상호 : 서울우유협동조합 | 조합장 : 문진섭 <br>
+              주소 : [도로명]서울특별시 중랑구 중랑천로 71 [지번]서울시 중랑구 상봉2동 137-7 사업자번호 : 216-82-00028 |
+              통신판매업 : 신고번호 중랑 제 2007-0086호 <br>
+              Copyright ⓒ 2014 Seoulmilk. All Rights Reserved
+            </address>
+            </div>
+        </div>
+        </footer>
+      </div>
+    </div>
+    </div>
+        </body>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>서울우유 치즈</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <script src="script/jquery-3.3.1.min.js"></script>
+    <script src="script/subpage.js"></script>
+    <script type="text/javascript">
+
+      $(function() {
+        $(".container").on("click", function() {
+          var that = $(this);
+          if (that.hasClass("is-open")) {
+            that.removeClass("is-open").addClass("is-closed");
+            $(".nav").animate({left:"-300px"},400);
+          } else {
+            that.removeClass("is-closed").addClass("is-open");
+            $(".nav").animate({left:"0px"},400);
+          }
+          // $(".nav").animate({left:"0px"},400);
+        });
+        // $(".container.is-open").click(function(){
+        //   $(".nav").animate({left:"300px"},400);
+        // });
+        // $(".container.is-closed").click(function(){
+        //   $(".nav").animate({left:"-300px"},400);
+        // });
+      });
+
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <style media="screen">
+      .container {
+      	position: relative;
+      	height: 28px;
+      	width: 36px;
+      	cursor: pointer;
+      }
+
+      .container .line-top,
+      .container .line-middle,
+      .container .line-bottom {
+      	position: absolute;
+      	display: block;
+      	height: 3px;
+      	width: 24px;
+      	border-radius: 2px;
+      	background: #e1e1e1;
+      }
+
+      .container .line-top {
+      	top: 0;
+      	-webkit-transform-origin: 34px 2px;
+      	transform-origin: 34px 2px;
+      }
+
+      .container .line-middle {
+      	top: 8px;
+      	-webkit-transition: opacity 200ms linear;
+      	transition: opacity 200ms linear;
+      }
+
+      .container .line-bottom {
+      	bottom: 9px;
+      	-webkit-transform-origin: 34px 2px;
+      	transform-origin: 34px 2px;
+      }
+
+      .container.is-open .line-top {
+      	-webkit-animation: line-top-out 600ms linear normal;
+      	animation: line-top-out 600ms linear normal;
+      	-webkit-animation-fill-mode: forwards;
+      	animation-fill-mode: forwards;
+      }
+
+      .container.is-open .line-middle {
+      	opacity: 0;
+      }
+
+      .container.is-open .line-bottom {
+      	-webkit-animation: line-bot-out 600ms linear normal;
+      	animation: line-bot-out 600ms linear normal;
+      	-webkit-animation-fill-mode: forwards;
+      	animation-fill-mode: forwards;
+      }
+
+      .container.is-closed .line-top {
+      	-webkit-animation: line-top-in 600ms linear normal;
+      	animation: line-top-in 600ms linear normal;
+      	-webkit-animation-fill-mode: forwards;
+      	animation-fill-mode: forwards;
+      }
+
+      .container.is-closed .line-middle {
+      	-webkit-transition-delay: 200ms;
+      	transition-delay: 200ms;
+      }
+
+      .container.is-closed .line-bottom {
+      	-webkit-animation: line-bot-in 600ms linear normal;
+      	animation: line-bot-in 600ms linear normal;
+      	-webkit-animation-fill-mode: forwards;
+      	animation-fill-mode: forwards;
+      }
+
+      @-webkit-keyframes line-top-in {
+        0% {
+          left: -5px;
+          bot: 0;
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+        }
+        20% {
+          left: -5px;
+          bot: 0;
+          -webkit-transform: rotate(-60deg);
+          transform: rotate(-60deg);
+        }
+        80% {
+          left: 0;
+          bot: 0;
+          -webkit-transform: rotate(15deg);
+          transform: rotate(15deg);
+        }
+        100% {
+          left: 0;
+          bot: -15px;
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+      }
+
+      @keyframes line-top-in {
+        0% {
+          left: -5px;
+          bot: 0;
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+        }
+        20% {
+          left: -5px;
+          bot: 0;
+          -webkit-transform: rotate(-60deg);
+          transform: rotate(-60deg);
+        }
+        80% {
+          left: 0;
+          bot: 0;
+          -webkit-transform: rotate(15deg);
+          transform: rotate(15deg);
+        }
+        100% {
+          left: 0;
+          bot: -15px;
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+      }
+
+      @-webkit-keyframes line-top-out {
+        0% {
+          left: 0;
+          top: 0;
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        20% {
+          left: 0;
+          top: 0;
+          -webkit-transform: rotate(15deg);
+          transform: rotate(15deg);
+        }
+        80% {
+          left: -5px;
+          top: -15px;
+          -webkit-transform: rotate(-60deg);
+          transform: rotate(-60deg);
+        }
+        100% {
+          left: -5px;
+          top: -15px;
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+        }
+      }
+
+      @keyframes line-top-out {
+        0% {
+          left: 0;
+          top: 0;
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        20% {
+          left: 0;
+          top: 0;
+          -webkit-transform: rotate(15deg);
+          transform: rotate(15deg);
+        }
+        80% {
+          left: -5px;
+          top: -15px;
+          -webkit-transform: rotate(-60deg);
+          transform: rotate(-60deg);
+        }
+        100% {
+          left: -5px;
+          top: -15px;
+          -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+        }
+      }
+
+      @-webkit-keyframes line-bot-in {
+        0% {
+          left: -5px;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+        20% {
+          left: -5px;
+          bot: -5px;
+          -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+        }
+        80% {
+          left: 0;
+          bot: -5px;
+          -webkit-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+        }
+        100% {
+          left: 0;
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+      }
+
+      @keyframes line-bot-in {
+        0% {
+          left: -5px;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+        20% {
+          left: -5px;
+          bot: -5px;
+          -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+        }
+        80% {
+          left: 0;
+          bot: -5px;
+          -webkit-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+        }
+        100% {
+          left: 0;
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+      }
+
+      @-webkit-keyframes line-bot-out {
+        0% {
+          left: 0;
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        20% {
+          left: 0;
+          -webkit-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+        }
+        80% {
+          left: -5px;
+          -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+        }
+        100% {
+          left: -5px;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+      }
+
+      @keyframes line-bot-out {
+        0% {
+          left: 0;
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+        20% {
+          left: 0;
+          -webkit-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+        }
+        80% {
+          left: -5px;
+          -webkit-transform: rotate(60deg);
+          transform: rotate(60deg);
+        }
+        100% {
+          left: -5px;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+      }
+      .stage {
+      	position: fixed;
+      	top: 50px;
+      	left:50px;
+      	-webkit-transform: translate(-50%, -50%);
+      	transform: translate(-50%, -50%);
+        z-index:10;
+      }
+    </style>
+  </head>
+  <body>
+  <div id="wrap">
+    <a href="index.html"><img src="images/home.png" alt="집버튼이미지" class="homeBtn"></a>
+
+    <div class="stage">
+      <div class="container">
+        <div class="line-top"></div>
+        <div class="line-middle"></div>
+        <div class="line-bottom"></div>
+      </div>
+    </div>
+
+  <div id="main">
+    <img src="images/bg0_1.jpg" alt="치즈배경">
+    <p class="mpo1">행복충전! Let's Smile</p>
+    <p class="mpo2 oran">치~즈 하세요! 그럼 행복해 집니다.</p>
+    <div class="menu1Btn">
+      <a href="#"><img src="images/menu1.png" alt="치즈이야기" ></a>
+    </div>
+    <div class="menu2Btn">
+      <a href="#"><img src="images/menu3.png" alt="국산치즈" ></a>
+    </div>
+  </div>
+  <div class="nav">
+  <a href="../index.html"><img src="images/logo_r1.png" alt="서울우유협동조합" class="logoBtn"></a>
+    <ul>
+      <li><div></div><a href="#">서울우유소개</a></li>
+      <li><div></div><a href="#">제품소개</a></li>
+      <li><div></div><a href="#">우유이야기</a></li>
+      <li><div></div><a href="#">홍보센터</a></li>
+      <li><div></div><a href="#">고객서비스</a></li>
+      <li><div></div><a href="#">인재채용</a></li>
+    </ul>
+
+  </div>
+
+  <div id="main2">
+    <p class="po1">신선한 1A등급 <span class="yel sz">국산우유 100%</span>(원료 원유 기준)로 만들어서</p>
+    <p class="po2">우유의 맛과 향이 살아있는 프리미엄 <span class="yel">국산 치즈</span></p>
+    <p class="po3">목장의 신선함이 살아있어 맛과 영양이 가득합니다.</p>
+    <a href="#!"><img src="images/book.png" alt="책이미지 : 치즈이야기로가는 버튼" class="storyC"></a>
+    <p class="storyF">치즈 이야기</p>
+    <div class="cheezemenu1Btn">
+      <a href="#"><img src="images/cheezemenu1.png" alt="슬라이스치즈" ></a>
+    </div>
+    <div class="cheezemenu2Btn">
+      <a href="#"><img src="images/kidcheeze1.png" alt="아이치즈" ></a>
+    </div>
+    <div class="cheezemenu3Btn">
+      <a href="#"><img src="images/cookcheeze1.png" alt="요리치즈" ></a>
+    </div>
+    <div class="cheezemenu4Btn">
+      <a href="#"><img src="images/snackcheeze1.png" alt="간식치즈" ></a>
+    </div>
+    <img src="images/bg2.jpg" alt="음식재료 배경">
+  </div>
+
+  <div class="menu1">
+    <img src="images/L_arrow2.png" alt="슬라이드버튼 왼쪽" class="LBtn">
+    <img src="images/R_arrow2.png" alt="슬라이드버튼 오른쪽" class="RBtn">
+    <div class="img_box">
+<a href="#!"><img src="images/slice_cheese.png" alt="슬라이스치즈로 가는 버튼" class="sliceC"></a>
+<a href="#!"><img src="images/baby.png" alt="아이치즈로 가는 버튼" class="kidC"></a>
+<a href="#!"><img src="images/cook_pizza.png" alt="요리치즈로 가는 버튼" class="cookC"></a>
+<a href="#!"><img src="images/snack_cheese.png" alt="간식치즈로 가는 버튼" class="snackC"></a>
+
+<p class="sliceF">슬라이스치즈</p>
+<p class="kidF">아이치즈</p>
+<p class="cookF">요리치즈</p>
+<p class="snackF">간식치즈</p>
+    </div>
+    <!-- <ul class="tab_1">
+      <li><a href="#!"></a></li>
+      <li><a href="#!"></a></li>
+      <li><a href="#!"></a></li>
+      <li><a href="#!"></a></li>
+    </ul> -->
+    <a href="#!"><img src="images/book.png" alt="치즈이야기로 가는 버튼" class="storyC"></a>
+    <p class="storyF">치즈 이야기</p>
+    <div class="slidelist1">
+      <div class="slideimg slideimg1">
+        <p class="menuF1">남녀노소 모두가 즐길 수 있는</p>
+        <p class="menuF2">깊고 진한 풍미의 슬라이스 치즈</p>
+        <p class="menuF3">부드럽고 진한 풍미들이 하모니를 이루는 </p>
+        <p class="menuF4">한국인 입맛에 가장 잘 맞는 치즈입니다.</p>
+        <img src="images/bg8.jpg" alt="슬라이스치즈배경">
+        <!-- <img src="images/menubg1-1.png" alt="" class="aa"> -->
+      </div>
+      <div class="slideimg slideimg2">
+        <img src="images/menubg01.jpg" alt="고다치즈">
+        <!-- <img src="images/menubg1-1.png" alt="" class="aa"> -->
+      </div>
+      <div class="slideimg slideimg3">
+        <img src="images/menubg02.jpg" alt="웰작">
+      </div>
+      <div class="slideimg slideimg4">
+        <img src="images/menubg03.jpg" alt="지방을 줄인 고칼슘치즈">
+      </div>
+    </div>
+  </div>
+  <div class="menu2">
+    <img src="images/L_arrow2.png" alt="슬라이드버튼 왼쪽" class="LBtn2">
+    <img src="images/R_arrow2.png" alt="슬라이드버튼 오른쪽" class="RBtn2">
+    <a href="#!"><img src="images/book.png" alt="치즈이야기로 가는 버튼" class="storyC"></a>
+    <p class="storyF">치즈 이야기</p>
+    <div class="img_box">
+      <a href="#!"><img src="images/slice_cheese.png" alt="슬라이스치즈로 가는 버튼" class="sliceC"></a>
+      <a href="#!"><img src="images/baby.png" alt="아이치즈로 가는 버튼" class="kidC"></a>
+      <a href="#!"><img src="images/cook_pizza.png" alt="요리치즈로 가는 버튼" class="cookC"></a>
+      <a href="#!"><img src="images/snack_cheese.png" alt="간식치즈로 가는 버튼" class="snackC"></a>
+<p class="storyF">치즈 이야기</p>
+<p class="sliceF">슬라이스치즈</p>
+<p class="kidF">아이치즈</p>
+<p class="cookF">요리치즈</p>
+<p class="snackF">간식치즈</p>
+    </div>
+    <div class="slidelist2">
+      <div class="slideimg">
+        <p class="menuF1">건강한 우리아이를 위해</p>
+        <p class="menuF2">사랑과 영양을 듬뿜담은 치즈</p>
+        <p class="menuF3">성장기 어린이에게 필요한 영양소가 가득!</p>
+        <p class="menuF4">엄마의 올바른 선택이 아이의 올바른 성장입니다.</p>
+        <img src="images/kidbg.jpg" alt="배경">
+        <!-- <img src="images/menubg1-1.png" alt="" class="aa"> -->
+      </div>
+      <div class="slideimg">
+        <img src="images/kid_bg3.jpg" alt="앙팡">
+      </div>
+      <div class="slideimg">
+        <img src="images/kid_bg4.jpg" alt="앙팡 유기농 아이치즈">
+      </div>
+      <div class="slideimg">
+        <img src="images/kid_bg5.jpg" alt="뽀로로가 좋아하는 칼슘왕치즈">
+      </div>
+    </div>
+  </div>
+  <div class="menu3">
+    <img src="images/L_arrow2.png" alt="슬라이드버튼 왼쪽" class="LBtn3">
+    <img src="images/R_arrow2.png" alt="슬라이드버튼 오른쪽" class="RBtn3">
+    <a href="#!"><img src="images/book.png" alt="" class="storyC"></a>
+    <p class="storyF">치즈 이야기</p>
+    <div class="img_box">
+      <a href="#!"><img src="images/slice_cheese.png" alt="슬라이스치즈로 가는 버튼" class="sliceC"></a>
+      <a href="#!"><img src="images/baby.png" alt="아이치즈로 가는 버튼" class="kidC"></a>
+      <a href="#!"><img src="images/cook_pizza.png" alt="요리치즈로 가는 버튼" class="cookC"></a>
+      <a href="#!"><img src="images/snack_cheese.png" alt="간식치즈로 가는 버튼" class="snackC"></a>
+<p class="storyF">치즈 이야기</p>
+<p class="sliceF">슬라이스치즈</p>
+<p class="kidF">아이치즈</p>
+<p class="cookF">요리치즈</p>
+<p class="snackF">간식치즈</p>
+    </div>
+    <div class="slidelist3">
+      <div class="slideimg">
+        <p class="menuF1">행복한 식탁을 완성해주는</p>
+        <p class="menuF2">다양한 요리용 치즈</p>
+        <p class="menuF3">피자전문점에서도 애용하고 있는 서울우유 치즈!</p>
+        <p class="menuF4">다양한 음식에 맛있게 요리하세요.</p>
+        <img src="images/cookbg.jpg" alt="배경">
+      </div>
+      <div class="slideimg">
+        <img src="images/cook_bg1.jpg" alt="모짜렐라치즈,테이스티치즈">
+      </div>
+      <div class="slideimg">
+        <img src="images/cook_bg2.jpg" alt="슈레드 모짜렐라">
+      </div>
+      <div class="slideimg">
+        <img src="images/cook_bg3.jpg" alt="요리왕 모짜렐라">
+      </div>
+    </div>
+  </div>
+  <div class="menu4">
+    <img src="images/L_arrow2.png" alt="슬라이드버튼 왼쪽" class="LBtn4">
+    <img src="images/R_arrow2.png" alt="슬라이드버튼 오른쪽" class="RBtn4">
+    <a href="#!"><img src="images/book.png" alt="" class="storyC"></a>
+    <p class="storyF">치즈 이야기</p>
+    <div class="img_box">
+      <a href="#!"><img src="images/slice_cheese.png" alt="슬라이스치즈로 가는 버튼" class="sliceC"></a>
+      <a href="#!"><img src="images/baby.png" alt="아이치즈로 가는 버튼" class="kidC"></a>
+      <a href="#!"><img src="images/cook_pizza.png" alt="요리치즈로 가는 버튼" class="cookC"></a>
+      <a href="#!"><img src="images/snack_cheese.png" alt="간식치즈로 가는 버튼" class="snackC"></a>
+<p class="storyF">치즈 이야기</p>
+<p class="sliceF">슬라이스치즈</p>
+<p class="kidF">아이치즈</p>
+<p class="cookF">요리치즈</p>
+<p class="snackF">간식치즈</p>
+    </div>
+    <div class="slidelist4">
+      <div class="slideimg">
+        <p class="menuF1">안주 및 간식으로 제격인</p>
+        <p class="menuF2">재미가득 개성만점 치즈</p>
+        <p class="menuF3">어린이 간식이나 와인, 맥주 안주로 딱!</p>
+        <p class="menuF4">누구나 맛있게 즐길 수 있는 개성만점 치즈입니다.</p>
+        <img src="images/snackbg2.jpg" alt="배경">
+      </div>
+      <div class="slideimg">
+        <img src="images/snack_bg1.jpg" alt="까요까요">
+      </div>
+      <div class="slideimg">
+        <img src="images/snack_bg2.jpg" alt="치즈큐빅">
+      </div>
+      <div class="slideimg">
+        <img src="images/snack_bg3.jpg" alt="스트링치즈">
+      </div>
+    </div>
+  </div>
+
+  <div id="main3">
+
+    <img src="images/L_arrow2.png" alt="슬라이드 왼쪽버튼" class="LBtn5">
+    <img src="images/R_arrow2.png" alt="슬라이드 오른쪽버튼" class="RBtn5">
+    <a href="#!"><img src="images/cheezeP.png" alt="국산치즈로가는 버튼" class="cheezeC"></a>
+    <p class="cheezeF">국산치즈</p>
+
+    <div class="slidelist5">
+      <div class="slideimg">
+        <img src="images/main3bg_1.jpg" alt="치즈이야기배경">
+        <img src="images/main3bgf.png" alt="치즈이야기" class="main3bgf">
+      </div>
+      <div class="slideimg">
+        <div class="cheezetap1">
+          <img src="images/main3slidebgf1.png" alt="치즈란?" class="main3slidebgf1">
+          <ul class="tab_menu1">
+            <li><a href=".tab1_1">치즈의 정의와 명칭</a> </li>
+            <li><a href=".tab1_2">치즈의 기원</a> </li>
+          </ul>
+          <section class="block_cheeze1">
+            <section class="tab1_1">
+              <img src="images/main3slidebgf1_1.png" alt="치즈의 정의, 치즈의 명칭">
+            </section>
+            <section class="tab1_2">
+              <img src="images/main3slidebgf1_2.png" alt="치즈의 기원">
+            </section>
+          </section>
+        </div>
+      </div>
+      <div class="slideimg">
+        <div class="cheezetap2">
+          <img src="images/main3slidebgf2.png" alt="치즈의 역사" class="main3slidebgf2">
+          <ul class="tab_menu2">
+            <li><a href=".tab2_1">치즈의 역사</a> </li>
+            <li><a href=".tab2_2">아시아 치즈역사</a> </li>
+            <li><a href=".tab2_3">유럽 치즈역사</a> </li>
+            <li><a href=".tab2_4">서울우유 치즈역사</a> </li>
+          </ul>
+          <section class="block_cheeze2">
+            <section class="tab2_1">
+              <img src="images/main3slidebgf2_1.png" alt="치즈의 역사">
+            </section>
+            <section class="tab2_2">
+              <img src="images/main3slidebgf2_2.png" alt="아시아 치즈역사">
+            </section>
+            <section class="tab2_3">
+              <img src="images/main3slidebgf2_3.png" alt="유럽 치즈역사">
+            </section>
+            <section class="tab2_4">
+              <img src="images/main3slidebgf2_4.png" alt="서울우유 치즈역사">
+            </section>
+          </section>
+        </div>
+      </div>
+      <div class="slideimg">
+        <div class="cheezetap3">
+          <img src="images/main3slidebgf3.png" alt="치즈제조 및 영양" class="main3slidebgf3">
+          <ul class="tab_menu3">
+            <li><a href=".tab3_1">자연치즈 제조과정</a> </li>
+            <li><a href=".tab3_2">가공치즈 제조과정</a> </li>
+            <li><a href=".tab3_3">치즈의 영양적 가치</a> </li>
+            <li><a href=".tab3_4">고칼슘 고단백 비타민</a> </li>
+          </ul>
+          <section class="block_cheeze3">
+            <section class="tab3_1">
+              <img src="images/main3slidebgf3_1.png" alt="자연치즈 제조과정">
+            </section>
+            <section class="tab3_2">
+              <img src="images/main3slidebgf3_2.png" alt="가공치즈 제조과정">
+            </section>
+            <section class="tab3_3">
+              <img src="images/main3slidebgf3_3.png" alt="치즈의 영양적 가치">
+            </section>
+            <section class="tab3_4">
+              <img src="images/main3slidebgf3_4.png" alt="고칼슘 고담 비타민">
+            </section>
+          </section>
+        </div>
+      </div>
+      <div class="slideimg">
+        <div class="cheezetap4">
+          <img src="images/main3slidebgf4.png" alt="세계의 치즈" class="main3slidebgf4">
+          <img src="images/bg44.png" alt="자연치즈,가공치즈" class="bg4">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  </body>
+</html>
